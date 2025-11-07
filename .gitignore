@@ -127,3 +127,70 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Hatch
+.hatch/
+
+# Audio files (optional - remove if you want to track them)
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+*.aiff
+*.aac
+
+# Data directories
+data/
+output/
+results/
+models/
+checkpoints/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS specific
+Thumbs.db
+.DS_Store
+
+# Project specific
+voice_test_data/
+voice_test_data_wav/
+*.raw
+microphone-results.*
+umit*.wav
+
+# Model files
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.pickle
+
+# Plot outputs
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
