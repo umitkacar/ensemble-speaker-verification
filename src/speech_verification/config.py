@@ -1,10 +1,8 @@
 """Configuration management for speech verification."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
-
-import numpy as np
 
 
 @dataclass
@@ -33,10 +31,10 @@ class VerificationConfig:
 class Config:
     """Main configuration container."""
 
-    audio: AudioConfig = AudioConfig()
-    verification: VerificationConfig = VerificationConfig()
-    data_dir: Path = Path("./data")
-    output_dir: Path = Path("./output")
+    audio: AudioConfig = field(default_factory=AudioConfig)
+    verification: VerificationConfig = field(default_factory=VerificationConfig)
+    data_dir: Path = field(default_factory=lambda: Path("./data"))
+    output_dir: Path = field(default_factory=lambda: Path("./output"))
     log_level: str = "INFO"
 
     def __post_init__(self) -> None:
