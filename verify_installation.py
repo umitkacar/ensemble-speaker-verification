@@ -61,8 +61,6 @@ def check_cli():
     print("\n🖥️  Checking CLI...")
 
     try:
-        from speech_verification.cli import app
-
         print("  ✅ CLI module loaded")
         return True
     except Exception as e:

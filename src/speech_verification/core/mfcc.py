@@ -44,9 +44,7 @@ class MFCCVerifier:
         self.audio_config = audio_config or AudioConfig()
         self.verification_config = verification_config or VerificationConfig()
         self.threshold = self.verification_config.mfcc_threshold
-        logger.info(
-            f"Initialized MFCCVerifier with threshold={self.threshold}"
-        )
+        logger.info(f"Initialized MFCCVerifier with threshold={self.threshold}")
 
     def extract_mfcc(
         self, audio_path: Union[str, Path], y: Optional[np.ndarray] = None
@@ -77,9 +75,7 @@ class MFCCVerifier:
         logger.debug(f"Extracted MFCC features: shape={mfcc.shape}")
         return mfcc
 
-    def compute_distance(
-        self, mfcc1: np.ndarray, mfcc2: np.ndarray
-    ) -> float:
+    def compute_distance(self, mfcc1: np.ndarray, mfcc2: np.ndarray) -> float:
         """
         Compute DTW distance between two MFCC feature matrices.
 

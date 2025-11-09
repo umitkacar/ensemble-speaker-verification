@@ -19,9 +19,7 @@ from sklearn.metrics import (
 logger = logging.getLogger(__name__)
 
 
-def calculate_roc_metrics(
-    predictions: np.ndarray, labels: np.ndarray
-) -> dict:
+def calculate_roc_metrics(predictions: np.ndarray, labels: np.ndarray) -> dict:
     """
     Calculate ROC curve metrics.
 
@@ -45,9 +43,7 @@ def calculate_roc_metrics(
     }
 
 
-def calculate_pr_metrics(
-    predictions: np.ndarray, labels: np.ndarray
-) -> dict:
+def calculate_pr_metrics(predictions: np.ndarray, labels: np.ndarray) -> dict:
     """
     Calculate Precision-Recall curve metrics.
 
@@ -71,9 +67,7 @@ def calculate_pr_metrics(
     }
 
 
-def calculate_eer(
-    predictions: np.ndarray, labels: np.ndarray
-) -> tuple[float, float]:
+def calculate_eer(predictions: np.ndarray, labels: np.ndarray) -> tuple[float, float]:
     """
     Calculate Equal Error Rate (EER).
 
@@ -88,17 +82,15 @@ def calculate_eer(
     fnr = 1 - tpr
 
     # Find where FPR and FNR are equal
-    eer_threshold = thresholds[np.nanargmin(np.absolute((fnr - fpr)))]
-    eer = fpr[np.nanargmin(np.absolute((fnr - fpr)))]
+    eer_threshold = thresholds[np.nanargmin(np.absolute(fnr - fpr))]
+    eer = fpr[np.nanargmin(np.absolute(fnr - fpr))]
 
     logger.info(f"EER: {eer:.4f} at threshold {eer_threshold:.4f}")
 
     return float(eer), float(eer_threshold)
 
 
-def calculate_classification_metrics(
-    y_true: np.ndarray, y_pred: np.ndarray
-) -> dict:
+def calculate_classification_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     """
     Calculate classification metrics.
 
@@ -216,8 +208,7 @@ def calculate_optimal_threshold(
             best_threshold = threshold
 
     logger.info(
-        f"Optimal threshold: {best_threshold:.4f} "
-        f"({metric}={best_metric:.4f})"
+        f"Optimal threshold: {best_threshold:.4f} " f"({metric}={best_metric:.4f})"
     )
 
     return float(best_threshold), float(best_metric)

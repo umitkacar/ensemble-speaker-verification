@@ -9,7 +9,6 @@ from numpy.linalg import norm
 from resemblyzer import VoiceEncoder, preprocess_wav
 
 from speech_verification.config import VerificationConfig
-from speech_verification.utils.audio import load_audio
 
 logger = logging.getLogger(__name__)
 
@@ -46,13 +45,9 @@ class CNNVerifier:
 
         logger.info(f"Loading Resemblyzer encoder on device: {device}")
         self.encoder = VoiceEncoder(device=device)
-        logger.info(
-            f"Initialized CNNVerifier with threshold={self.threshold}"
-        )
+        logger.info(f"Initialized CNNVerifier with threshold={self.threshold}")
 
-    def extract_embedding(
-        self, audio_path: Union[str, Path]
-    ) -> np.ndarray:
+    def extract_embedding(self, audio_path: Union[str, Path]) -> np.ndarray:
         """
         Extract speaker embedding from audio.
 
@@ -71,9 +66,7 @@ class CNNVerifier:
         )
         return embedding
 
-    def compute_distance(
-        self, embedding1: np.ndarray, embedding2: np.ndarray
-    ) -> float:
+    def compute_distance(self, embedding1: np.ndarray, embedding2: np.ndarray) -> float:
         """
         Compute Euclidean distance between embeddings.
 

@@ -2,13 +2,13 @@
 """Test CLI functionality."""
 
 import sys
-from pathlib import Path
 
 
 def test_cli_import():
     """Test that CLI module can be imported."""
     try:
         from speech_verification.cli import app
+
         print("✅ CLI module import successful")
         return True
     except ImportError as e:
@@ -26,7 +26,7 @@ def test_cli_structure():
         from speech_verification.cli import app
 
         # Check that app is a Typer instance
-        if not hasattr(app, 'registered_commands'):
+        if not hasattr(app, "registered_commands"):
             # Typer apps have commands registered
             print("✅ CLI app structure looks correct")
             return True
@@ -43,6 +43,7 @@ def test_cli_help():
     """Test CLI help command."""
     try:
         from typer.testing import CliRunner
+
         from speech_verification.cli import app
 
         runner = CliRunner()

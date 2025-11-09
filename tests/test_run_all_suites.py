@@ -84,7 +84,9 @@ def main():
         print(f"{status}: {name}")
 
     print("=" * 70)
-    print(f"\n📈 Overall: {passed}/{total} test suites passed ({passed/total*100:.1f}%)")
+    print(
+        f"\n📈 Overall: {passed}/{total} test suites passed ({passed/total*100:.1f}%)"
+    )
 
     if passed == total:
         print("\n🎉 ALL TEST SUITES PASSED!")

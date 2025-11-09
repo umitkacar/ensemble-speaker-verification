@@ -169,9 +169,7 @@ def plot_spectrogram(
     plt.figure(figsize=(14, 6))
 
     D = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
-    img = librosa.display.specshow(
-        D, sr=sr, x_axis="time", y_axis="hz", cmap="magma"
-    )
+    img = librosa.display.specshow(D, sr=sr, x_axis="time", y_axis="hz", cmap="magma")
 
     plt.colorbar(img, format="%+2.0f dB")
     plt.title(title, fontsize=14)

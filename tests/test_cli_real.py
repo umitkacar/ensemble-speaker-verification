@@ -4,8 +4,8 @@ Real CLI tests.
 Tests the command-line interface with actual usage scenarios.
 """
 
-import sys
 import subprocess
+import sys
 from pathlib import Path
 
 

@@ -37,8 +37,7 @@ def load_audio(
     try:
         y, sample_rate = librosa.load(str(audio_path), sr=sr, mono=mono)
         logger.debug(
-            f"Loaded audio: {audio_path.name}, "
-            f"shape={y.shape}, sr={sample_rate}"
+            f"Loaded audio: {audio_path.name}, " f"shape={y.shape}, sr={sample_rate}"
         )
         return y, sample_rate
     except Exception as e:

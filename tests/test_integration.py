@@ -2,8 +2,6 @@
 """Integration tests for the complete package."""
 
 import sys
-import tempfile
-from pathlib import Path
 
 
 def test_full_package_import():
@@ -31,7 +29,7 @@ def test_verifier_instantiation():
     """Test that verifiers can be instantiated."""
     print("\nTesting verifier instantiation...")
     try:
-        from speech_verification import MFCCVerifier, CNNVerifier, EnsembleVerifier
+        from speech_verification import CNNVerifier, EnsembleVerifier, MFCCVerifier
 
         # Test MFCC
         mfcc = MFCCVerifier()

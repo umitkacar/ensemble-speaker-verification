@@ -2,13 +2,12 @@
 """Test package without heavy dependencies installed."""
 
 import sys
-from pathlib import Path
 
 
 def test_config_module():
     """Test config module works without dependencies."""
     try:
-        from speech_verification.config import Config, AudioConfig, VerificationConfig
+        from speech_verification.config import AudioConfig, Config, VerificationConfig
 
         # Create instances
         audio_cfg = AudioConfig()
@@ -31,6 +30,7 @@ def test_config_module():
     except Exception as e:
         print(f"❌ Config test failed: {e}")
         import traceback
+
         traceback.print_exc()
         return False
 
@@ -54,6 +54,7 @@ def test_package_structure():
     except Exception as e:
         print(f"❌ Package structure test failed: {e}")
         import traceback
+
         traceback.print_exc()
         return False
 
@@ -126,6 +127,7 @@ def main():
         except Exception as e:
             print(f"❌ Unexpected error in {name}: {e}")
             import traceback
+
             traceback.print_exc()
             results.append((name, False))
 

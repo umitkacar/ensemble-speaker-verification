@@ -40,7 +40,7 @@ def test_version():
 def test_config_import():
     """Test config module."""
     try:
-        from speech_verification.config import Config, AudioConfig, VerificationConfig
+        from speech_verification.config import Config
 
         config = Config()
         assert config.audio.sample_rate == 16000

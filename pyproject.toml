@@ -63,8 +63,11 @@ dev = [
     "mypy>=1.0.0",
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",  # Parallel testing
+    "coverage[toml]>=7.0.0",  # Coverage reporting
     "pre-commit>=3.0.0",
     "hatch>=1.7.0",
+    "uv>=0.1.0",  # Fast package manager
 ]
 
 viz = [
@@ -110,23 +113,32 @@ packages = ["src/speech_verification"]
 dependencies = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",
+    "coverage[toml]>=7.0.0",
     "black>=23.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
+    "uv>=0.1.0",
 ]
 
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
+test-parallel = "pytest -n auto {args:tests}"  # Parallel testing
 test-cov = "pytest --cov=speech_verification --cov-report=term-missing --cov-report=html {args:tests}"
+test-cov-parallel = "pytest -n auto --cov=speech_verification --cov-report=term-missing --cov-report=html {args:tests}"
 lint = "ruff check src tests"
+lint-fix = "ruff check --fix src tests"
 format = "black src tests"
 format-check = "black --check src tests"
 type-check = "mypy src"
+security = "bandit -r src -c pyproject.toml"
+coverage-report = "coverage report --show-missing"
+coverage-html = "coverage html"
 all = [
     "format",
     "lint",
     "type-check",
-    "test-cov",
+    "test-cov-parallel",
 ]
 
 [tool.hatch.envs.docs]
@@ -163,6 +175,8 @@ extend-exclude = '''
 [tool.ruff]
 line-length = 88
 target-version = "py38"
+
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -179,12 +193,14 @@ ignore = [
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
     "W191",  # indentation contains tabs
+    "ARG002", # unused method argument (needed for interface compatibility)
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # unused imports
+"cli.py" = ["ARG001", "ARG002"]  # CLI interface needs unused args
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["speech_verification"]
 
 # MyPy configuration
@@ -220,9 +236,16 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "--showlocals",
+    "--tb=short",
+    "--color=yes",
 ]
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
 
 # Coverage configuration
 [tool.coverage.run]
@@ -247,3 +270,38 @@ exclude_lines = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
 ]
+
+
+# Bandit security configuration
+[tool.bandit]
+exclude_dirs = ["tests", "test_*.py"]
+skips = ["B101", "B601"]  # Skip assert_used and shell injection (false positives)
+
+[tool.ruff.lint.per-file-ignores."tests/*"]
+F841 = []  # Allow unused variables in tests
+F401 = []  # Allow unused imports in tests
+ARG001 = []  # Allow unused arguments in tests
+
+[tool.ruff.lint.per-file-ignores."*_test.py"]
+E402 = []
+E731 = []
+F841 = []
+F401 = []
+C408 = []
+
+[tool.ruff.lint.per-file-ignores."voice-speech-verification.py"]
+E402 = []
+E731 = []
+F841 = []
+C408 = []
+F401 = []
+
+[tool.ruff.lint.per-file-ignores."test_demo_ensemble.py"]
+E731 = []
+
+[tool.ruff.lint.per-file-ignores."src/speech_verification/utils/audio.py"]
+B904 = []
+ARG001 = []
+
+[tool.ruff.lint.per-file-ignores."src/speech_verification/cli.py"]
+B904 = []

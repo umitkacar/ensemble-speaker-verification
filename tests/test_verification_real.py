@@ -13,8 +13,9 @@ def test_mfcc_verification():
     print("\n📊 Testing MFCC+DTW Verification...")
 
     try:
-        from speech_verification import MFCCVerifier
         import numpy as np
+
+        from speech_verification import MFCCVerifier
 
         # Create verifier
         verifier = MFCCVerifier()
@@ -86,8 +87,9 @@ def test_cnn_verification():
     print("\n📊 Testing CNN (Resemblyzer) Verification...")
 
     try:
-        from speech_verification import CNNVerifier
         import numpy as np
+
+        from speech_verification import CNNVerifier
 
         # Create verifier
         verifier = CNNVerifier()

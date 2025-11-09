@@ -2,7 +2,6 @@
 
 import json
 import logging
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -41,7 +40,7 @@ except ImportError as e:
 
 if CLI_AVAILABLE:
     from speech_verification import __version__
-    from speech_verification.config import Config, VerificationConfig
+    from speech_verification.config import Config
     from speech_verification.core.cnn import CNNVerifier
     from speech_verification.core.fusion import EnsembleVerifier
     from speech_verification.core.mfcc import MFCCVerifier
@@ -57,7 +56,6 @@ if CLI_AVAILABLE:
 
     console = Console()
 
-
     def setup_logging(verbose: bool = False) -> None:
         """Setup logging configuration."""
         level = logging.DEBUG if verbose else logging.INFO
@@ -67,13 +65,13 @@ if CLI_AVAILABLE:
             handlers=[RichHandler(console=console, rich_tracebacks=True)],
         )
 
-
     @app.command()
     def version() -> None:
         """Show version information."""
-        console.print(f"[bold cyan]Speech Verification Ensemble[/bold cyan] v{__version__}")
+        console.print(
+            f"[bold cyan]Speech Verification Ensemble[/bold cyan] v{__version__}"
+        )
         console.print("[dim]Multi-modal speaker verification system[/dim]")
-
 
     @app.command()
     def verify(
@@ -136,9 +134,7 @@ if CLI_AVAILABLE:
                         }
                         console.print_json(data=output)
                     else:
-                        _print_result(
-                            is_same, f"MFCC Distance: {distance:.2f}", method
-                        )
+                        _print_result(is_same, f"MFCC Distance: {distance:.2f}", method)
 
                 elif method == "cnn":
                     verifier = CNNVerifier(verification_config=config.verification)
@@ -154,9 +150,7 @@ if CLI_AVAILABLE:
                         }
                         console.print_json(data=output)
                     else:
-                        _print_result(
-                            is_same, f"CNN Distance: {distance:.4f}", method
-                        )
+                        _print_result(is_same, f"CNN Distance: {distance:.4f}", method)
 
                 elif method == "ensemble":
                     verifier = EnsembleVerifier(verification_config=config.verification)
@@ -168,9 +162,7 @@ if CLI_AVAILABLE:
                         _print_ensemble_result(result)
 
                 else:
-                    console.print(
-                        f"[bold red]❌ Unknown method: {method}[/bold red]"
-                    )
+                    console.print(f"[bold red]❌ Unknown method: {method}[/bold red]")
                     raise typer.Exit(1)
 
                 progress.update(task, completed=True)
@@ -179,11 +171,12 @@ if CLI_AVAILABLE:
             console.print(f"[bold red]❌ Error: {e}[/bold red]")
             raise typer.Exit(1)
 
-
     @app.command()
     def record(
         output: Path = typer.Argument(..., help="Output audio file path"),
-        duration: int = typer.Option(5, "--duration", "-d", help="Recording duration (seconds)"),
+        duration: int = typer.Option(
+            5, "--duration", "-d", help="Recording duration (seconds)"
+        ),
         sample_rate: int = typer.Option(16000, "--sr", help="Sample rate"),
     ) -> None:
         """
@@ -206,7 +199,6 @@ if CLI_AVAILABLE:
         except Exception as e:
             console.print(f"[bold red]❌ Error: {e}[/bold red]")
             raise typer.Exit(1)
-
 
     @app.command()
     def convert(
@@ -240,7 +232,6 @@ if CLI_AVAILABLE:
         except Exception as e:
             console.print(f"[bold red]❌ Error: {e}[/bold red]")
             raise typer.Exit(1)
-
 
     @app.command()
     def batch(
@@ -283,16 +274,12 @@ if CLI_AVAILABLE:
             if method == "mfcc":
                 verifier = MFCCVerifier(verification_config=config.verification)
                 results = verifier.batch_verify(pairs)
-                results = [
-                    {"is_same_speaker": r[0], "distance": r[1]} for r in results
-                ]
+                results = [{"is_same_speaker": r[0], "distance": r[1]} for r in results]
 
             elif method == "cnn":
                 verifier = CNNVerifier(verification_config=config.verification)
                 results = verifier.batch_verify(pairs)
-                results = [
-                    {"is_same_speaker": r[0], "distance": r[1]} for r in results
-                ]
+                results = [{"is_same_speaker": r[0], "distance": r[1]} for r in results]
 
             elif method == "ensemble":
                 verifier = EnsembleVerifier(verification_config=config.verification)
@@ -321,11 +308,14 @@ if CLI_AVAILABLE:
             console.print(f"[bold red]❌ Error: {e}[/bold red]")
             raise typer.Exit(1)
 
-
     @app.command()
     def benchmark(
-        data_dir: Path = typer.Argument(..., help="Directory with audio files", exists=True),
-        method: str = typer.Option("ensemble", "--method", "-m", help="Method to benchmark"),
+        data_dir: Path = typer.Argument(
+            ..., help="Directory with audio files", exists=True
+        ),
+        method: str = typer.Option(
+            "ensemble", "--method", "-m", help="Method to benchmark"
+        ),
         verbose: bool = typer.Option(False, "--verbose", "-v", help="Verbose output"),
     ) -> None:
         """
@@ -340,7 +330,6 @@ if CLI_AVAILABLE:
         console.print("[yellow]⏱️  Benchmarking not yet implemented[/yellow]")
         console.print("[dim]Coming soon![/dim]")
 
-
     def _print_result(is_same: bool, details: str, method: str) -> None:
         """Print verification result."""
         table = Table(title="Verification Result", show_header=True)
@@ -348,11 +337,14 @@ if CLI_AVAILABLE:
         table.add_column("Result", style="bold")
         table.add_column("Details", style="dim")
 
-        result_text = "[green]✅ Same Speaker[/green]" if is_same else "[red]❌ Different Speaker[/red]"
+        result_text = (
+            "[green]✅ Same Speaker[/green]"
+            if is_same
+            else "[red]❌ Different Speaker[/red]"
+        )
         table.add_row(method.upper(), result_text, details)
 
         console.print(table)
-
 
     def _print_ensemble_result(result: dict) -> None:
         """Print ensemble verification result."""
@@ -401,16 +393,15 @@ if CLI_AVAILABLE:
             f"MFCC={result['weights']['mfcc']}[/dim]"
         )
 
-
     def main() -> None:
         """Main entry point."""
         app()
-
 
     if __name__ == "__main__":
         main()
 
 else:
+
     def setup_logging(verbose: bool = False) -> None:
         """Dummy setup_logging when CLI not available."""
         pass
