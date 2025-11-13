@@ -8,9 +8,9 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/umitkacar/Speech-Verification-Ensemble?style=for-the-badge&logo=github)](https://github.com/umitkacar/Speech-Verification-Ensemble/stargazers)
-[![Forks](https://img.shields.io/github/forks/umitkacar/Speech-Verification-Ensemble?style=for-the-badge&logo=github)](https://github.com/umitkacar/Speech-Verification-Ensemble/network)
-[![Issues](https://img.shields.io/github/issues/umitkacar/Speech-Verification-Ensemble?style=for-the-badge&logo=github)](https://github.com/umitkacar/Speech-Verification-Ensemble/issues)
+[![Stars](https://img.shields.io/github/stars/umitkacar/ensemble-speaker-verification?style=for-the-badge&logo=github)](https://github.com/umitkacar/ensemble-speaker-verification/stargazers)
+[![Forks](https://img.shields.io/github/forks/umitkacar/ensemble-speaker-verification?style=for-the-badge&logo=github)](https://github.com/umitkacar/ensemble-speaker-verification/network)
+[![Issues](https://img.shields.io/github/issues/umitkacar/ensemble-speaker-verification?style=for-the-badge&logo=github)](https://github.com/umitkacar/ensemble-speaker-verification/issues)
 
 <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge" />
@@ -275,8 +275,8 @@ fusion_predictions = 0.7 * embed_normalized + 0.3 * mfcc_normalized
 
 ```bash
 # Clone the repository
-git clone https://github.com/umitkacar/Speech-Verification-Ensemble.git
-cd Speech-Verification-Ensemble
+git clone https://github.com/umitkacar/ensemble-speaker-verification.git
+cd ensemble-speaker-verification
 
 # Install dependencies
 pip install -r requirements.txt
@@ -1015,7 +1015,7 @@ graph LR
 1. **Fork the repository**
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Speech-Verification-Ensemble.git
+   git clone https://github.com/YOUR_USERNAME/ensemble-speaker-verification.git
    ```
 3. **Create a branch**:
    ```bash
@@ -1051,9 +1051,9 @@ graph LR
 
 ### 💬 Discussion & Support
 
-- 💡 [Open an Issue](https://github.com/umitkacar/Speech-Verification-Ensemble/issues) for bugs/feature requests
-- 🌟 [Star the repo](https://github.com/umitkacar/Speech-Verification-Ensemble) if you find it useful
-- 🍴 [Fork and contribute](https://github.com/umitkacar/Speech-Verification-Ensemble/fork) your improvements
+- 💡 [Open an Issue](https://github.com/umitkacar/ensemble-speaker-verification/issues) for bugs/feature requests
+- 🌟 [Star the repo](https://github.com/umitkacar/ensemble-speaker-verification) if you find it useful
+- 🍴 [Fork and contribute](https://github.com/umitkacar/ensemble-speaker-verification/fork) your improvements
 
 ---
 
@@ -1064,7 +1064,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2024-2025 Speech-Verification-Ensemble Contributors
+Copyright (c) 2024-2025 ensemble-speaker-verification Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1132,20 +1132,20 @@ in the Software without restriction...
 
 ## 📊 Repository Statistics
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=umitkacar&repo=Speech-Verification-Ensemble&show_icons=true&theme=tokyonight)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=umitkacar&repo=ensemble-speaker-verification&show_icons=true&theme=tokyonight)
 
 ### 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=umitkacar/Speech-Verification-Ensemble&type=Date)](https://star-history.com/#umitkacar/Speech-Verification-Ensemble&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=umitkacar/ensemble-speaker-verification&type=Date)](https://star-history.com/#umitkacar/ensemble-speaker-verification&Date)
 
 ---
 
 ### 🔗 Quick Links
 
 [![Documentation](https://img.shields.io/badge/📖_Documentation-blue?style=for-the-badge)](README.md)
-[![Issues](https://img.shields.io/badge/🐛_Report_Bug-red?style=for-the-badge)](https://github.com/umitkacar/Speech-Verification-Ensemble/issues)
-[![Pull Requests](https://img.shields.io/badge/🔃_Pull_Request-green?style=for-the-badge)](https://github.com/umitkacar/Speech-Verification-Ensemble/pulls)
-[![Discussions](https://img.shields.io/badge/💬_Discussions-yellow?style=for-the-badge)](https://github.com/umitkacar/Speech-Verification-Ensemble/discussions)
+[![Issues](https://img.shields.io/badge/🐛_Report_Bug-red?style=for-the-badge)](https://github.com/umitkacar/ensemble-speaker-verification/issues)
+[![Pull Requests](https://img.shields.io/badge/🔃_Pull_Request-green?style=for-the-badge)](https://github.com/umitkacar/ensemble-speaker-verification/pulls)
+[![Discussions](https://img.shields.io/badge/💬_Discussions-yellow?style=for-the-badge)](https://github.com/umitkacar/ensemble-speaker-verification/discussions)
 
 ---
 
